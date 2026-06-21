@@ -2,7 +2,11 @@
   "name": "skyward-career-platform",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "build": "npm --prefix server install && npm --prefix client install && npm --prefix client run build"
+    "build": "npm run build --workspace=client"
   }
 }
