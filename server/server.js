@@ -1,19 +1,9 @@
-if (typeof global.DOMMatrix === 'undefined') {
-  global.DOMMatrix = class DOMMatrix {};
-}
-if (typeof global.ImageData === 'undefined') {
-  global.ImageData = class ImageData {};
-}
-if (typeof global.Path2D === 'undefined') {
-  global.Path2D = class Path2D {};
-}
-
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const mammoth = require('mammoth');
-const { PDFParse } = require('pdf-parse');
+const pdf = require('pdf-parse');
 const { createClient } = require('@supabase/supabase-js');
 
 const app = express();
@@ -220,13 +210,8 @@ async function extractResumeText(file) {
   if (!file) return '';
 
   if (file.mimetype === 'application/pdf' || file.originalname.toLowerCase().endsWith('.pdf')) {
-    const parser = new PDFParse({ data: file.buffer });
-    try {
-      const result = await parser.getText();
-      return result.text || '';
-    } finally {
-      await parser.destroy();
-    }
+    const result = await pdf(file.buffer);
+    return result.text || '';
   }
 
   if (
