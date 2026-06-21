@@ -1,0 +1,8 @@
+{
+  "name": "skyward-career-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "npm --prefix server install && npm --prefix client install && npm --prefix client run build"
+  }
+}
