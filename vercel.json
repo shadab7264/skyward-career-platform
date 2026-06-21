@@ -19,14 +19,11 @@
       "dest": "/server/server.js"
     },
     {
-      "src": "/(.*)",
+      "src": "/((?!api/).*\\.[a-zA-Z0-9]+)$",
       "dest": "/client/dist/$1"
     },
     {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
+      "src": "/((?!api/).*)$",
       "dest": "/client/dist/index.html"
     }
   ]
